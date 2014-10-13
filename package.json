@@ -8,6 +8,8 @@
     "grunt-contrib-compass": "*",
     "grunt-contrib-watch": "*",
     "grunt-htmlhint": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-jade": "*",
     "grunt-contrib-connect": "*",
     "grunt-open": "~0.2.1",
     "matchdep": "*",
