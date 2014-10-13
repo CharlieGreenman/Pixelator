@@ -4,7 +4,7 @@ var rows = 20;
 
 var colorNow = function(){
 	document.getElementById('actualcolor').style.background = c;
-}
+};
 
 function init(){
 	columns = document.getElementById('setcol').value;
@@ -13,14 +13,18 @@ function init(){
 	createList();
 	control();
 	createResult();
-	createCookie("visitor", "secondtime", 20);
+	createCookie('visitor', 'secondtime', 20);
 	noIntro();
 	return false;
 }
 
 function handleChange(input) {
-    if (input.value < 0) input.value = 0;
-    if (input.value > 20) input.value = 20;
+    if (input.value < 0){
+      input.value = 0;
+    }
+    if (input.value > 20){
+      input.value = 20;
+    }
   }
 
 function noIntro(){
@@ -42,8 +46,8 @@ function noIntro(){
 
 function selectPreset(e){
 	var selected = e.id;
-	var theselected = selected.replace("select", "preset");
-	c = "#" + document.getElementById(theselected).value;
+	var theselected = selected.replace('select', 'preset');
+	c = '#' + document.getElementById(theselected).value;
 	colorNow();
 }
 
@@ -52,44 +56,44 @@ function addPreset(){
 	var q = presets.getElementsByTagName('input').length;
 	q = q+1;
 	if(q<=13){
-		var newPreset = document.createElement("div");
+		var newPreset = document.createElement('div');
 		newPreset.innerHTML = '<button id="select-'+q+'" onclick="selectPreset(this)">'+q+'</button><input id="preset-'+q+'" class="color" name="preset-'+q+'" value="">';
 		presets.appendChild(newPreset);
 		// Bind color-picker
-		var myPicker = new jscolor.color(document.getElementById('preset-'+q), {})
-		myPicker.fromString('ecf0f1')
+		var myPicker = new jscolor.color(document.getElementById('preset-'+q), {});
+		myPicker.fromString('ecf0f1');
 	}
 }
 
 
 function createList(){
 	var li = document.createElement('li');
-	var listElement = document.createElement("ul");
-	listElement.id = "grid";
-	listElement.style.width = columns*22+"px";
+	var listElement = document.createElement('ul');
+	listElement.id = 'grid';
+	listElement.style.width = columns*22+'px';
 
-	document.getElementsByClassName("main")[0].insertBefore(listElement, document.getElementById("init"));
+	document.getElementsByClassName('main')[0].insertBefore(listElement, document.getElementById('init'));
 	var numberOfListItems = rows*columns;
 
 	for( var i =  1 ; i <= numberOfListItems ; ++i){
-		var listItem = document.createElement("li");
-		listItem.innerHTML = '<input type="checkbox" name="ch'+i+'" id="ch'+i+'"><label for="ch'+i+'" class="ch"></label>'
+		var listItem = document.createElement('li');
+		listItem.innerHTML = '<input type="checkbox" name="ch'+i+'" id="ch'+i+'"><label for="ch'+i+'" class="ch"></label>';
 		listElement.appendChild(listItem);
     }
 
     // delete the inputs of initial settings -> force to refresh page (todo!)
     var elem = document.getElementById('initials');
-    elem.className += " " + "close";
+    elem.className += ' ' + 'close';
 } //createList
 
 //createList();
 
 function createResult(){
 	var result = document.getElementById('result');
-	result.style.width = pixel + "px";
-	result.style.height = pixel + "px";
+	result.style.width = pixel + 'px';
+	result.style.height = pixel + 'px';
 	var preview = document.getElementById('preview');
-	preview.style.width = columns*pixel+(pixel*1+10) + "px";
+	preview.style.width = columns*pixel+(pixel*1+10) + 'px';
 	var openPreview = document.getElementById('openpreview');
 		var head = document.getElementsByTagName('head')[0];
 		var style = document.createElement('style');
@@ -108,10 +112,10 @@ function control(){
 	var inputsContainer = document.getElementsByClassName('main')[0];
 	var inputs = inputsContainer.getElementsByTagName('input');
 	var nodeArray = [];
-	var px, py;
+	//var px, py; unnecessary
 	var pairsArray = [];
 	for (var i = 0; i < inputs.length; ++i) {
-		if(inputs[i].getAttribute("type") == "checkbox"){
+		if(inputs[i].getAttribute('type') === 'checkbox'){
 			inputs[i].onclick = function(){
 				this.value = c;
 				control();
@@ -119,17 +123,17 @@ function control(){
 					this.nextSibling.style.background = this.value;
 					this.nextSibling.title = c;
 				} else {
-					this.nextSibling.style.background = "rgba(0,0,0,0.1)";
+					this.nextSibling.style.background = 'rgba(0,0,0,0.1)';
 					this.nextSibling.title = c;
 				}
-			}
+			};
 			theid = inputs[i].id;
-			thenumber = parseFloat(theid.replace("ch", ""));
+			thenumber = parseFloat(theid.replace('ch', ''));
 			var tempY = thenumber/columns;
 			if (inputs[i].checked){
 				thecolor = inputs[i].value;
 		    	nodeArray.push(thenumber);
-		    	var px = thenumber%columns == 0 ? columns : thenumber%columns;
+		    	var px = thenumber%columns === 0 ? columns : thenumber%columns;
 		    	var py = px == columns ? Math.floor(tempY) : Math.floor(tempY)+1;
 		    	pairsArray.push(px*pixel + 'px ' + py*pixel + 'px 0 ' + thecolor)
 		    } //if:checked
@@ -143,18 +147,18 @@ function control(){
 	codepen.html = '<div class="result"></div>';
 	codepen.css = '.result { width:'+pixel+'px; height:'+pixel+'px; box-shadow:'+theboxshadow+'; }';
 	codepen.js = '// generated with Pixelator http://lab.elrumordelaluz.com/pixelator';
-	codepen.css_prefix_free = "true";
-	codepen.title = "One-element Pixelator";
-	codepen.description = "Pen generated from Pixelator: http://lab.elrumordelaluz.com/pixelator/"
+	codepen.css_prefix_free = 'true';
+	codepen.title = 'One-element Pixelator';
+	codepen.description = 'Pen generated from Pixelator: http://lab.elrumordelaluz.com/pixelator/';
 
 	var codepenArr = new Array();
-	codepenArr[0] = "html";
-	codepenArr[1] = "css";
-	codepenArr[3] = "js";
-	codepenArr[4] = "css_prefix_free";
-	codepenArr[5] = "title";
-	codepenArr[6] = "description";
-	var jsonText = JSON.stringify(codepen, codepenArr, "\t");
+	codepenArr[0] = 'html';
+	codepenArr[1] = 'css';
+	codepenArr[3] = 'js';
+	codepenArr[4] = 'css_prefix_free';
+	codepenArr[5] = 'title';
+	codepenArr[6] = 'description';
+	var jsonText = JSON.stringify(codepen, codepenArr, '\t');
 	document.getElementById('cdpn-data').value = jsonText;
 
 	result.style.boxShadow = theboxshadow;
@@ -166,16 +170,16 @@ function control(){
 		};
 	} else {
 		document.getElementById('code').value = '';
-		document.getElementById('codepen').style.display = "none";
+		document.getElementById('codepen').style.display = 'none';
 	}
 		
 }
 
-var c = "#f00";
+var c = '#f00';
 
 function pick(e){
 	//e.value = '#'+e.color;
-	return "#"+document.getElementById(e).value;
+	return '#'+document.getElementById(e).value;
 }
 document.onkeypress = function(evt) {
     evt = evt || window.event;
@@ -188,7 +192,7 @@ document.onkeypress = function(evt) {
 			c = pick('preset-'+i);
 	}
 	colorNow();
-	if(charTyped == "r"){
+	if(charTyped == 'r'){
 		if(document.getElementById('open-ps').checked == true)
 			document.getElementById('open-ps').checked = false;
 		else
@@ -210,8 +214,8 @@ document.onkeypress = function(evt) {
 control();
 
 
-var visited = getCookie("visitor");
-if(visited == "secondtime")
+var visited = getCookie('visitor');
+if(visited == 'secondtime')
 	noIntro();
 
 function createCookie(name, value, days) {
@@ -223,16 +227,16 @@ function createCookie(name, value, days) {
     else var expires = "";
     document.cookie = name + "=" + value + expires + "; path=/";
 }
-function getCookie(c_name) {
+function getCookie(cName) {
     if (document.cookie.length > 0) {
-        c_start = document.cookie.indexOf(c_name + "=");
-        if (c_start != -1) {
-            c_start = c_start + c_name.length + 1;
-            c_end = document.cookie.indexOf(";", c_start);
-            if (c_end == -1) {
-                c_end = document.cookie.length;
+        cStart = document.cookie.indexOf(cName + "=");
+        if (cStart != -1) {
+            cStart = cStart + cName.length + 1;
+            cEnd = document.cookie.indexOf(";", cStart);
+            if (cEnd === -1) {
+                cEnd = document.cookie.length;
             }
-            return unescape(document.cookie.substring(c_start, c_end));
+            return unescape(document.cookie.substring(cStart, cEnd));
         }
     }
     return "";
@@ -249,10 +253,10 @@ function hasClass(elem, className) {
 }
 // toggleClass
 function toggleClass(elem, className) {
-	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ' ) + ' ';
     if (hasClass(elem, className)) {
-        while (newClass.indexOf(" " + className + " ") >= 0 ) {
-            newClass = newClass.replace( " " + className + " " , " " );
+        while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+            newClass = newClass.replace( ' ' + className + ' ' , ' ' );
         }
         elem.className = newClass.replace(/^\s+|\s+$/g, '');
     } else {
@@ -261,4 +265,4 @@ function toggleClass(elem, className) {
 }
 document.getElementById('help-opener').onclick = function() {
     toggleClass(document.getElementById('help'), 'open');
-}
+};
