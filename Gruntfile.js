@@ -11,6 +11,16 @@ module.exports = function(grunt) {
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
 
+        jade:{
+          compile: {
+              files:{
+                  'index.html': 'jade/**/*.jade'
+              }
+          },
+            options: {
+                pretty: true
+            }
+        },
 
         compass: {
           compile: {
@@ -110,6 +120,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.registerTask('default', ['compass', 'jshint', 'server', 'watch',]);
+    grunt.registerTask('default', ['compass', 'jade', 'jshint', 'server', 'watch',]);
 
 };
