@@ -1,9 +1,33 @@
+// Welcome to Pixelator, which features the following:
+/* Table Of Contents
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+
+
+ */
+
+
+
 var pixel = 5;
 var columns = 20;
 var rows = 20;
+
+
 var colorNow = function () {
     document.getElementById('actualcolor').style.background = c;
 };
+
+/*------------------------------------*\
+    Initialize Javascript Functions
+    Found Inside
+\*------------------------------------*/
+
 function init() {
     columns = document.getElementById('setcol').value;
     rows = document.getElementById('setrow').value;
@@ -50,6 +74,7 @@ function selectPreset(e) {
     c = '#' + document.getElementById(theselected).value;
     colorNow();
 }
+
 function addPreset() {
     var presets = document.getElementById('presets');
     var q = presets.getElementsByTagName('input').length;
@@ -66,7 +91,8 @@ function addPreset() {
     }
 }
 function createList() {
-    var li = document.createElement('li');
+    //var li is never used so unnecessary
+    //var li = document.createElement('li');
     var listElement = document.createElement('ul');
     listElement.id = 'grid';
     listElement.style.width = columns * 22 + 'px';
@@ -92,15 +118,15 @@ function createResult() {
     var style = document.createElement('style');
     var declarations = document.createTextNode('#openpreview:hover, #openpreview:hover + #preview {' +
         ' -webkit-transform:translateX(' + (columns * pixel + pixel * 1) + 'px); ' +
-        '-moz-transform:translateX(' + (columns * pixel + pixel * 1) + 'px); ' +
-        'transform:translateX(' + (columns * pixel + pixel * 1) + 'px); } #preview, #openpreview {' +
-        ' -webkit-transform:translateX(' + preview.style.width + ');' +
-        ' -moz-transform:translateX(' + preview.style.width + ');' +
-        ' transform:translateX(' + preview.style.width + '); }' +
-        ' input[type="checkbox"][name="open-pr"]:checked ~ #preview,' +
-        ' input[type="checkbox"][name="open-pr"]:checked + #openpreview {' +
-        ' -webkit-transform:translateX(0px)!important;' +
-        ' -moz-transform:translateX(0px)!important;' +
+        ' -moz-transform:translateX(' + (columns * pixel + pixel * 1) + 'px); ' +
+        ' transform:translateX(' + (columns * pixel + pixel * 1) + 'px); } #preview, #openpreview { ' +
+        ' -webkit-transform:translateX(' + preview.style.width + '); ' +
+        ' -moz-transform:translateX(' + preview.style.width + '); ' +
+        ' transform:translateX(' + preview.style.width + '); } ' +
+        ' input[type="checkbox"][name="open-pr"]:checked ~ #preview, ' +
+        ' input[type="checkbox"][name="open-pr"]:checked + #openpreview { ' +
+        ' -webkit-transform:translateX(0px)!important; ' +
+        ' -moz-transform:translateX(0px)!important; ' +
         ' transform:translateX(0px)!important; } #openpreview { right:' + preview.style.width + ' }');
     style.type = 'text/css';
     if (style.styleSheet) {
@@ -130,6 +156,7 @@ function control() {
                     this.nextSibling.title = c;
                 }
             };
+
             theid = inputs[i].id;
             thenumber = parseFloat(theid.replace('ch', ''));
             var tempY = thenumber / columns;

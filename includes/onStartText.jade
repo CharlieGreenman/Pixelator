@@ -1,0 +1,24 @@
+#initials.start
+      p.init-title Initial settings
+      form(onsubmit="return init();")
+        label(for="setcol") Colums:
+        input#setcol(type="text", value="20")
+        label(for="setrow") Rows:
+        input#setrow(type="text", value="20")
+        label(for="setrow") Pixel size:
+        input#setpixel(type="text", value="5", onchange="handleChange(this)")
+        input#settings(type="submit", value="Create Grid & Start!")
+      a#help-opener(href="javascript:void(0)") Need help?
+      #help.help
+        p
+          | With this simple tool you could generate pixelArt one-element css box-shadow following these few steps:
+        ol
+          li
+            | 1. Simply create a grid depending on your needs and set the pixel size for the output. Then toggle the panels (left, right and bottom).
+          li
+            | 2. On the left side, set some color presets. You could add up to 13 and manage it just clicking on the number or triggering the numbero on the keyboard (only from 1 to 9).
+          li 3. On the right side, preview your one-element box-shadow generated.
+          li 4. On the bottom you could copy the CSS generated code.
+          p
+            | This is a beta release. Hope you enjoy it and appreciate your comments to improve this tool.
+          a(href="http://twitter.com/elrumordelaluz") @elrumordelaluz

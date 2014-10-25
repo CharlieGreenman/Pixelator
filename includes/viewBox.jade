@@ -1,0 +1,7 @@
+input#open-pr.opener(type="checkbox", name="open-pr")
+    label#openpreview(for="open-pr")
+    aside#preview.preview.start
+      #result
+      form(action="http://codepen.io/pen/define", method="POST", target="_blank")
+        input#cdpn-data(type="hidden", name="data")
+        input#codepen.codepen(type="submit", onclick="_gaq.push(['_trackEvent', 'Codepen', 'publish']);", value="view on Codepen")
