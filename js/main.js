@@ -1,19 +1,3 @@
-// Welcome to Pixelator, which features the following:
-/* Table Of Contents
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-
-
- */
-
-
-
 var pixel = 5;
 var columns = 20;
 var rows = 20;
@@ -39,9 +23,9 @@ function init() {
     noIntro();
     return false;
 }
-//not sure if I should be adding this init function
-init();
 
+
+/* not sure why this is neccesary */
 function handleChange(input) {
     if (input.value < 0) {
         input.value = 0;
