@@ -1,28 +1,56 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * Global...............Globally-available variables and config.
+ *
+ * TOOLS
+ * Mixins...............Useful mixins.
+ *
+ * GENERIC
+ * Normalize.css........A level playing field.
+ * Box-sizing...........Better default `box-sizing`.
+ *
+ * BASE
+ * Headings.............H1–H6 styles.
+ *
+ * OBJECTS
+ * Wrappers.............Wrapping and constraining elements.
+ *
+ * COMPONENTS
+ * Page-head............The main page header.
+ * Page-foot............The main page footer.
+ * Buttons..............Button elements.
+ *
+ * TRUMPS
+ * Text.................Text helpers.
+ */
+
+/*------------------------------------*\
+    Imports
+\*------------------------------------*/
 
 @import "compass/reset";
 
 @import url(http://fonts.googleapis.com/css?family=VT323);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 
-*, *:before, *:after {
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-  	box-sizing: border-box;
-}
-*:focus, input { outline: none; }
+/*------------------------------------*\
+    Variables and Mixins
+\*------------------------------------*/
 
+//color variables
 $middle-grey:#3e4649;
 $dark-grey:#262626;
-
 $panel-size: 200px;
 
+//mixins for font families
 @mixin font-sans { font-family: 'Open Sans', sans-serif; }
 @mixin font-pixel { font-family: 'VT323', cursive; }
 
+/*------------------------------------*\
+    Global Settings
+\*------------------------------------*/
 body,html {
 	min-height: 100%;
 	height: 100%;
@@ -31,77 +59,182 @@ body,html {
 	background: $middle-grey;
 }
 
-input[type="checkbox"].opener { 
-	display: none; 
-	& + label {
-		@include font-sans;
-		font-size: 18px;
-		text-align: center;
-		content: '+';
-		width: 24px; height: 26px;
-		color:$middle-grey;
-		background:rgba($dark-grey,0.7);
-		position: fixed;
-		transition:transform 0.3s, background 0.3s;
-		cursor: pointer;
-		z-index: 99;
-		&:hover{ 
-			background:lighten($dark-grey,2);
-		}
-		&:hover + aside:after { opacity:.1; }
-		&:after, &:before{
-			content:'';
-			width: 12px;
-			height: 3px;
-			background:$middle-grey;
-			position:absolute;
-			right: 50%;
-			margin-right: -6px;
-			top: 50%;
-			margin-top: -2px;
-		}
-		&:before{
-			transform: rotate(90deg);
-		}
+*, *:before, *:after {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+  	box-sizing: border-box;
+}
+
+*:focus, input {
+  outline: none;
+}
+
+/*------------------------------------*\
+    On Start Screen
+\*------------------------------------*/
+
+.intro {
+	position: absolute;
+	@include font-pixel;
+	left: 50%;
+	width: 400px;
+	margin-left: -200px;
+	height: 100px;
+	top: 50%;
+	margin-top: -50px;
+	opacity:0;
+	visibility:hidden;
+	&.start {
+		animation-name: fade-in-out;
+		animation-timing-function: ease-in-out;
+ 		animation-fill-mode: forwards;
 	}
-	&:checked + label:before{
+	&.step1{
+		animation-duration: 4s;
+	}
+	&.step2{ animation-duration: 7s; animation-delay: 4s; }
+	&.step3{ animation-duration: 10s; animation-delay: 11s; }
+	&.step4{ animation-duration: 5s; animation-delay: 21s; }
+	&.step5{ animation-duration: 7s; animation-delay: 26s; }
+}
+
+	.intro .page-subtitle { font-size:30px; }
+	.intro.step1 {
+		width: 200px;
+		margin-left: -100px;
+		.page-subtitle { font-size:16px; }
+	}
+
+#initials.start {
+	opacity:0;
+	animation:fade-in 2s 5s forwards;
+}
+.presets.start, label[for="open-ps"].start { animation:slide-x 5s 12s; }
+.preview.start, label[for="open-pr"].start { animation:slide-x 3s 22s; }
+.code.start, label[for="open-code"].start { animation:slide-y 3s 27s; }
+
+/*------------------------------------*\
+    Header
+\*------------------------------------*/
+
+header {
+	@include font-pixel;
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	text-align: left;
+	padding-bottom: 30px;
+	transition:opacity 0.5s;
+	&.start {
 		opacity: 0;
 	}
 }
 
-label[for="open-ps"] {
-	left: $panel-size;
-	top:50%;
-	margin-top: -12px;
-	transform:translateX(-($panel-size - 20));
-	&:hover, &:hover + aside { transform: translateX(-($panel-size - 23)) }
+
+/*------------------------------------*\
+    Code for Reset Button
+\*------------------------------------*/
+
+.refresher {
+	width: 50px;
+	height: 20px;
+	position: absolute;
+	color:rgba(255,255,255,0.2);
+	text-align: center;
+	@include font-pixel;
+	background:lighten($dark-grey,5);
+	top:0;
+	left: 50%;
+	margin-left: -25px;
+	opacity:0;
+	transition:opacity 0.3s 0.5s, background 0.3s, color 0.3s;
+	cursor:pointer;
+	&:hover {
+		background:rgba(255,0,0,0.3);
+		color:$dark-grey;
+	}
 }
-input[type="checkbox"][name="open-ps"]:checked ~ .presets, input[type="checkbox"][name="open-ps"]:checked + label {
-	transform:translateX(0px);
+/*------------------------------------*\
+    Wrappers
+\*------------------------------------*/
+
+.main {
+	padding-left:60px;
+	padding-top:40px;
+	ul { width: 240px; list-style: none; margin: 0; padding: 0; }
+	li {
+		width: 20px;
+		height: 20px;
+		float: left;
+		margin: 1px;
+	}
+
+/*------------------------------------*\
+    Styling for Inputs
+\*------------------------------------*/
+
+	input[type="checkbox"] { display: none; }
+
+	input[type="checkbox"] + label{
+		width: 100%;
+		height: 100%;
+		display: block;
+		background: rgba(0,0,0,0.1);
+		-webkit-transition:background .3s;
+	}
 }
 
-label[for="open-pr"] {
-	right: $panel-size;
-	top:50%;
-	margin-top: -12px;
-	transform:translateX($panel-size);
-	&:hover, &:hover + aside { transform: translateX($panel-size - 10) }
-}
-input[type="checkbox"][name="open-pr"]:checked ~ .preview, input[type="checkbox"][name="open-pr"]:checked + label {
-	transform:translateX(0px);
-}
+/*-----------------------------------------*\
+    Styling for Color Picker A.K.A. Left Bar
+\*-----------------------------------------*/
 
-label[for="open-code"] {
-	right: 50%;
-	bottom:$panel-size;
-	margin-right: -12px;
+	#actualcolor {
+		width: 100%;
+		height: 20px;
+		position: absolute;
+		line-height: 20px;
+		text-align: center;
+		color:darken($middle-grey,7);
+		top: 0;
+		font-size: 12px;
+		right: 0;
+		background: #f00;
+		&:after {
+			content: '';
+			width: 12px; height: 12px;
+			background:rgba(darken($middle-grey,7),0.8);
+			position: absolute;
+			right: 4px;
+			top: 4px;
+		}
+	}
+
+/*-----------------------------------------*\
+    Styling for CodePen A.K.A. Bottom Bar
+\*-----------------------------------------*/
+
+.code {
+	position:fixed;
+	width:100%;
+	height:$panel-size;
+	bottom:0;
+	left: 0;
 	transform:translateY($panel-size);
-	height: 24px;
-	&:hover, &:hover + section { transform: translateY($panel-size - 10) }
+	transition:transform 0.3s;
+	background:rgba($dark-grey,0.7);
+	padding:20px;
+	textarea {
+		width: 100%;
+		height: 100%;
+		background:rgba(255,255,255,0.1);
+		border:0;
+	}
 }
-input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"][name="open-code"]:checked + label {
-	transform:translateY(0px);
-}
+
+
+/*------------------------------------*\
+    Attributes
+\*------------------------------------*/
 
 .presets, .preview {
 	width: $panel-size;
@@ -156,40 +289,8 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
 		margin-left:20px;
 		margin-bottom:10px;
 	}
-	
-	#actualcolor {
-		width: 100%;
-		height: 20px;
-		position: absolute;
-		line-height: 20px;
-		text-align: center;
-		color:darken($middle-grey,7);
-		top: 0;
-		font-size: 12px;
-		right: 0;
-		background: #f00;
-		&:after {
-			content: '';
-			width: 12px; height: 12px;
-			background:rgba(darken($middle-grey,7),0.8);
-			position: absolute;
-			right: 4px;
-			top: 4px;
-		}
-	}
 
-header {
-	@include font-pixel;
-	position:fixed;
-	bottom:20px;
-	right:20px;
-	text-align: left;
-	padding-bottom: 30px;
-	transition:opacity 0.5s;
-	&.start {
-		opacity: 0;
-	}
-}
+
 	.page-title {
 		color:rgba(255,255,255,0.5);
 		font-size: 34px;
@@ -260,106 +361,12 @@ header {
 	}
 }
 
-.refresher {
-	width: 50px;
-	height: 20px;
-	position: absolute;
-	color:rgba(255,255,255,0.2);
-	text-align: center;
-	@include font-pixel;
-	background:lighten($dark-grey,5);
-	top:0;
-	left: 50%;
-	margin-left: -25px;
-	opacity:0;
-	transition:opacity 0.3s 0.5s, background 0.3s, color 0.3s;
-	cursor:pointer;
-	&:hover {
-		background:rgba(255,0,0,0.3);
-		color:$dark-grey;
-	}
-}
 #initials.close + .refresher { opacity:1; }
 
-.main {
-	padding-left:60px;
-	padding-top:40px;
-	ul { width: 240px; list-style: none; margin: 0; padding: 0; }
-	li { 
-		width: 20px; 
-		height: 20px; 
-		float: left;
-		margin: 1px;
-	}
 
-	input[type="checkbox"] { display: none; }
-	input[type="checkbox"] + label{
-		width: 100%;
-		height: 100%;
-		display: block;
-		background: rgba(0,0,0,0.1);
-		-webkit-transition:background .3s;
-	}
-}
-
-.code {
-	position:fixed;
-	width:100%;
-	height:$panel-size;
-	bottom:0;
-	left: 0;
-	transform:translateY($panel-size);
-	transition:transform 0.3s;
-	background:rgba($dark-grey,0.7);
-	padding:20px;
-	textarea {
-		width: 100%;
-		height: 100%;
-		background:rgba(255,255,255,0.1);
-		border:0;
-	}
-}
-
-.intro {
-	position: absolute;
-	@include font-pixel;
-	left: 50%;
-	width: 400px;
-	margin-left: -200px;
-	height: 100px;
-	top: 50%;
-	margin-top: -50px;
-	opacity:0;
-	visibility:hidden;
-	&.start {
-		animation-name: fade-in-out;
-		animation-timing-function: ease-in-out;
- 		animation-fill-mode: forwards;
-	}
-	&.step1{ 
-		animation-duration: 4s; 
-	}
-	&.step2{ animation-duration: 7s; animation-delay: 4s; }
-	&.step3{ animation-duration: 10s; animation-delay: 11s; }
-	&.step4{ animation-duration: 5s; animation-delay: 21s; }
-	&.step5{ animation-duration: 7s; animation-delay: 26s; }
-}
-
-	.intro .page-subtitle { font-size:30px; }
-	.intro.step1 {
-		width: 200px;
-		margin-left: -100px;
-		.page-subtitle { font-size:16px; }
-	}
-
-
-#initials.start {
-	opacity:0;
-	animation:fade-in 2s 5s forwards; 
-}
-.presets.start, label[for="open-ps"].start { animation:slide-x 5s 12s; }
-.preview.start, label[for="open-pr"].start { animation:slide-x 3s 22s; }
-.code.start, label[for="open-code"].start { animation:slide-y 3s 27s; }
+/*------------------------------------*\
+    Animations
+\*------------------------------------*/
 
 @keyframes fade-in-out {
 	10% { opacity:0; visibility:hidden; }
@@ -374,6 +381,9 @@ header {
 @keyframes slide-x { 50% {	transform:translateX(0); } }
 @keyframes slide-y { 50% {	transform:translateY(0); } }
 
+/*------------------------------------*\
+    Twitter and Github
+\*------------------------------------*/
 
 .twitter-share-button{
 	position: absolute;
