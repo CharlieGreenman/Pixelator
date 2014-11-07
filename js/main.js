@@ -36,6 +36,10 @@ function handleChange(input) {
 }
 //handleChange(input);
 
+/*--------------------------------------*\
+   Remove Intro animation once complete
+\*--------------------------------------*/
+
 function noIntro() {
     document.getElementById('stp1').classList.remove('start');
     document.getElementById('stp2').classList.remove('start');
@@ -52,12 +56,20 @@ function noIntro() {
     document.getElementById('opencode').classList.remove('start');
 }
 
+/*------------------------------------------------*\
+   Change preset color once new color is selected
+\*------------------------------------------------*/
+
 function selectPreset(e) {
     var selected = e.id;
     var theselected = selected.replace('select', 'preset');
     c = '#' + document.getElementById(theselected).value;
     colorNow();
 }
+
+/*------------------------------------------------*\
+   Change preset color once new color is selected
+\*------------------------------------------------*/
 
 function addPreset() {
     var presets = document.getElementById('presets');
@@ -76,7 +88,7 @@ function addPreset() {
 }
 function createList() {
     //var li is never used so unnecessary
-    //var li = document.createElement('li');
+    var li = document.createElement('li');
     var listElement = document.createElement('ul');
     listElement.id = 'grid';
     listElement.style.width = columns * 22 + 'px';
@@ -91,6 +103,7 @@ function createList() {
     var elem = document.getElementById('initials');
     elem.className += ' ' + 'close';
 }
+
 function createResult() {
     var result = document.getElementById('result');
     result.style.width = pixel + 'px';

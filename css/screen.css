@@ -102,19 +102,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /*------------------------------------*\
     Global Settings
 \*------------------------------------*/
-/* line 55, ../sass/screen.scss */
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 61, ../sass/screen.scss */
-*:focus, input {
-  outline: none;
-}
-
-/* line 65, ../sass/screen.scss */
+/* line 54, ../sass/screen.scss */
 body, html {
   min-height: 100%;
   height: 100%;
@@ -123,10 +111,105 @@ body, html {
   background: #3e4649;
 }
 
+/* line 62, ../sass/screen.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 68, ../sass/screen.scss */
+*:focus, input {
+  outline: none;
+}
+
+/*------------------------------------*\
+    On Start Screen
+\*------------------------------------*/
+/* line 76, ../sass/screen.scss */
+.intro {
+  position: absolute;
+  font-family: 'VT323', cursive;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  height: 100px;
+  top: 50%;
+  margin-top: -50px;
+  opacity: 0;
+  visibility: hidden;
+}
+/* line 87, ../sass/screen.scss */
+.intro.start {
+  animation-name: fade-in-out;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+/* line 92, ../sass/screen.scss */
+.intro.step1 {
+  animation-duration: 4s;
+}
+/* line 95, ../sass/screen.scss */
+.intro.step2 {
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+/* line 96, ../sass/screen.scss */
+.intro.step3 {
+  animation-duration: 10s;
+  animation-delay: 11s;
+}
+/* line 97, ../sass/screen.scss */
+.intro.step4 {
+  animation-duration: 5s;
+  animation-delay: 21s;
+}
+/* line 98, ../sass/screen.scss */
+.intro.step5 {
+  animation-duration: 7s;
+  animation-delay: 26s;
+}
+
+/* line 101, ../sass/screen.scss */
+.intro .page-subtitle {
+  font-size: 30px;
+}
+
+/* line 102, ../sass/screen.scss */
+.intro.step1 {
+  width: 200px;
+  margin-left: -100px;
+}
+/* line 105, ../sass/screen.scss */
+.intro.step1 .page-subtitle {
+  font-size: 16px;
+}
+
+/* line 108, ../sass/screen.scss */
+#initials.start {
+  opacity: 0;
+  animation: fade-in 2s 5s forwards;
+}
+
+/* line 112, ../sass/screen.scss */
+.presets.start, label[for="open-ps"].start {
+  animation: slide-x 5s 12s;
+}
+
+/* line 113, ../sass/screen.scss */
+.preview.start, label[for="open-pr"].start {
+  animation: slide-x 3s 22s;
+}
+
+/* line 114, ../sass/screen.scss */
+.code.start, label[for="open-code"].start {
+  animation: slide-y 3s 27s;
+}
+
 /*------------------------------------*\
     Header
 \*------------------------------------*/
-/* line 77, ../sass/screen.scss */
+/* line 120, ../sass/screen.scss */
 header {
   font-family: 'VT323', cursive;
   position: fixed;
@@ -136,38 +219,66 @@ header {
   padding-bottom: 30px;
   transition: opacity 0.5s;
 }
-/* line 85, ../sass/screen.scss */
+/* line 128, ../sass/screen.scss */
 header.start {
   opacity: 0;
 }
 
 /*------------------------------------*\
+    Code for Reset Button
+\*------------------------------------*/
+/* line 138, ../sass/screen.scss */
+.refresher {
+  width: 50px;
+  height: 20px;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  font-family: 'VT323', cursive;
+  background: #333333;
+  top: 0;
+  left: 50%;
+  margin-left: -25px;
+  opacity: 0;
+  transition: opacity 0.3s 0.5s, background 0.3s, color 0.3s;
+  cursor: pointer;
+}
+/* line 152, ../sass/screen.scss */
+.refresher:hover {
+  background: rgba(255, 0, 0, 0.3);
+  color: #262626;
+}
+
+/*------------------------------------*\
     Wrappers
 \*------------------------------------*/
-/* line 94, ../sass/screen.scss */
+/* line 161, ../sass/screen.scss */
 .main {
   padding-left: 60px;
   padding-top: 40px;
+  /*------------------------------------*\
+      Styling for Inputs
+  \*------------------------------------*/
 }
-/* line 97, ../sass/screen.scss */
+/* line 164, ../sass/screen.scss */
 .main ul {
   width: 240px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 98, ../sass/screen.scss */
+/* line 165, ../sass/screen.scss */
 .main li {
   width: 20px;
   height: 20px;
   float: left;
   margin: 1px;
 }
-/* line 105, ../sass/screen.scss */
+/* line 176, ../sass/screen.scss */
 .main input[type="checkbox"] {
   display: none;
 }
-/* line 107, ../sass/screen.scss */
+/* line 178, ../sass/screen.scss */
 .main input[type="checkbox"] + label {
   width: 100%;
   height: 100%;
@@ -176,7 +287,10 @@ header.start {
   -webkit-transition: background .3s;
 }
 
-/* line 117, ../sass/screen.scss */
+/*-----------------------------------------*\
+    Styling for Color Picker A.K.A. Left Bar
+\*-----------------------------------------*/
+/* line 191, ../sass/screen.scss */
 #actualcolor {
   width: 100%;
   height: 20px;
@@ -189,7 +303,7 @@ header.start {
   right: 0;
   background: #f00;
 }
-/* line 128, ../sass/screen.scss */
+/* line 202, ../sass/screen.scss */
 #actualcolor:after {
   content: '';
   width: 12px;
@@ -200,7 +314,10 @@ header.start {
   top: 4px;
 }
 
-/* line 139, ../sass/screen.scss */
+/*-----------------------------------------*\
+    Styling for CodePen A.K.A. Bottom Bar
+\*-----------------------------------------*/
+/* line 216, ../sass/screen.scss */
 .code {
   position: fixed;
   width: 100%;
@@ -212,7 +329,7 @@ header.start {
   background: rgba(38, 38, 38, 0.7);
   padding: 20px;
 }
-/* line 149, ../sass/screen.scss */
+/* line 226, ../sass/screen.scss */
 .code textarea {
   width: 100%;
   height: 100%;
@@ -223,106 +340,7 @@ header.start {
 /*------------------------------------*\
     Attributes
 \*------------------------------------*/
-/* line 163, ../sass/screen.scss */
-input[type="checkbox"].opener {
-  display: none;
-}
-/* line 165, ../sass/screen.scss */
-input[type="checkbox"].opener + label {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  text-align: center;
-  content: '+';
-  width: 24px;
-  height: 26px;
-  color: #3e4649;
-  background: rgba(38, 38, 38, 0.7);
-  position: fixed;
-  cursor: pointer;
-  z-index: 99;
-}
-/* line 177, ../sass/screen.scss */
-input[type="checkbox"].opener + label:hover {
-  background: #2b2b2b;
-}
-/* line 180, ../sass/screen.scss */
-input[type="checkbox"].opener + label:hover + aside:after {
-  opacity: .1;
-}
-/* line 181, ../sass/screen.scss */
-input[type="checkbox"].opener + label:after, input[type="checkbox"].opener + label:before {
-  content: '';
-  width: 12px;
-  height: 3px;
-  background: #3e4649;
-  position: absolute;
-  right: 50%;
-  margin-right: -6px;
-  top: 50%;
-  margin-top: -2px;
-}
-/* line 192, ../sass/screen.scss */
-input[type="checkbox"].opener + label:before {
-  transform: rotate(90deg);
-}
-/* line 196, ../sass/screen.scss */
-input[type="checkbox"].opener:checked + label:before {
-  opacity: 0;
-}
-
-/* line 201, ../sass/screen.scss */
-label[for="open-ps"] {
-  left: 200px;
-  top: 50%;
-  margin-top: -12px;
-  transform: translateX(-180px);
-}
-/* line 206, ../sass/screen.scss */
-label[for="open-ps"]:hover, label[for="open-ps"]:hover + aside {
-  transform: translateX(-177px);
-}
-
-/* line 209, ../sass/screen.scss */
-input[type="checkbox"][name="open-ps"]:checked ~ .presets, input[type="checkbox"][name="open-ps"]:checked + label {
-  transform: translateX(0px);
-}
-
-/* line 213, ../sass/screen.scss */
-label[for="open-pr"] {
-  right: 200px;
-  top: 50%;
-  margin-top: -12px;
-  transform: translateX(200px);
-}
-/* line 218, ../sass/screen.scss */
-label[for="open-pr"]:hover, label[for="open-pr"]:hover + aside {
-  transform: translateX(190px);
-}
-
-/* line 220, ../sass/screen.scss */
-input[type="checkbox"][name="open-pr"]:checked ~ .preview, input[type="checkbox"][name="open-pr"]:checked + label {
-  transform: translateX(0px);
-}
-
-/* line 224, ../sass/screen.scss */
-label[for="open-code"] {
-  right: 50%;
-  bottom: 200px;
-  margin-right: -12px;
-  transform: translateY(200px);
-  height: 24px;
-}
-/* line 230, ../sass/screen.scss */
-label[for="open-code"]:hover, label[for="open-code"]:hover + section {
-  transform: translateY(190px);
-}
-
-/* line 233, ../sass/screen.scss */
-input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"][name="open-code"]:checked + label {
-  transform: translateY(0px);
-}
-
-/* line 238, ../sass/screen.scss */
+/* line 239, ../sass/screen.scss */
 .presets, .preview {
   width: 200px;
   height: 100%;
@@ -331,33 +349,33 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   transition: transform 0.3s;
 }
 
-/* line 245, ../sass/screen.scss */
+/* line 246, ../sass/screen.scss */
 .presets {
   transform: translateX(-180px);
   font-family: 'VT323', cursive;
 }
 
-/* line 250, ../sass/screen.scss */
+/* line 251, ../sass/screen.scss */
 #presets {
   margin-top: 70px;
 }
-/* line 252, ../sass/screen.scss */
+/* line 253, ../sass/screen.scss */
 #presets button {
   border: 0;
   background: #2e3336;
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 }
-/* line 257, ../sass/screen.scss */
+/* line 258, ../sass/screen.scss */
 #presets button:hover {
   background: #3e4649;
 }
-/* line 259, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 #presets input {
   height: 24px;
   width: 200px;
 }
-/* line 263, ../sass/screen.scss */
+/* line 264, ../sass/screen.scss */
 #presets button:not(#add-ps) {
   width: 100%;
   height: 24px;
@@ -366,7 +384,7 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   margin: 0;
   position: relative;
 }
-/* line 270, ../sass/screen.scss */
+/* line 271, ../sass/screen.scss */
 #presets button:not(#add-ps)::after {
   content: '';
   position: absolute;
@@ -379,12 +397,12 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   border-left: 4px solid transparent;
   right: 6px;
 }
-/* line 281, ../sass/screen.scss */
+/* line 282, ../sass/screen.scss */
 #presets button:not(#add-ps):hover:after {
   border-top: 6px solid #3e4649;
 }
 
-/* line 284, ../sass/screen.scss */
+/* line 285, ../sass/screen.scss */
 .ps-title {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -393,35 +411,35 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   margin-bottom: 10px;
 }
 
-/* line 293, ../sass/screen.scss */
+/* line 294, ../sass/screen.scss */
 .page-title {
   color: rgba(255, 255, 255, 0.5);
   font-size: 34px;
 }
-/* line 296, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .page-title span {
   color: rgba(255, 255, 255, 0.3);
 }
 
-/* line 298, ../sass/screen.scss */
+/* line 299, ../sass/screen.scss */
 .page-subtitle {
   color: rgba(255, 255, 255, 0.3);
   font-size: 16px;
 }
-/* line 301, ../sass/screen.scss */
+/* line 302, ../sass/screen.scss */
 .page-subtitle a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* line 307, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 .preview {
   transform: translateX(200px);
   right: 0;
   top: 0;
 }
 
-/* line 313, ../sass/screen.scss */
+/* line 314, ../sass/screen.scss */
 #initials {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
@@ -438,7 +456,7 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   color: rgba(255, 255, 255, 0.5);
   transition: transform 0.5s;
 }
-/* line 328, ../sass/screen.scss */
+/* line 329, ../sass/screen.scss */
 #initials p {
   text-align: center;
   margin-bottom: 10px;
@@ -451,7 +469,7 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   line-height: 30px;
   background: #262626;
 }
-/* line 340, ../sass/screen.scss */
+/* line 341, ../sass/screen.scss */
 #initials input {
   border: 0;
   width: 30px;
@@ -461,11 +479,11 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   background: #3e4649;
   color: rgba(255, 255, 255, 0.5);
 }
-/* line 349, ../sass/screen.scss */
+/* line 350, ../sass/screen.scss */
 #initials label {
   margin-right: 5px;
 }
-/* line 350, ../sass/screen.scss */
+/* line 351, ../sass/screen.scss */
 #initials input[type="submit"] {
   border: 0;
   width: 100%;
@@ -474,183 +492,84 @@ input[type="checkbox"][name="open-code"]:checked ~ .code, input[type="checkbox"]
   background: #3e4649;
   color: rgba(255, 255, 255, 0.5);
 }
-/* line 358, ../sass/screen.scss */
+/* line 359, ../sass/screen.scss */
 #initials.close {
   transform: translateY(-175px);
 }
 
-/* line 363, ../sass/screen.scss */
-.refresher {
-  width: 50px;
-  height: 20px;
-  position: absolute;
-  color: rgba(255, 255, 255, 0.2);
-  text-align: center;
-  font-family: 'VT323', cursive;
-  background: #333333;
-  top: 0;
-  left: 50%;
-  margin-left: -25px;
-  opacity: 0;
-  transition: opacity 0.3s 0.5s, background 0.3s, color 0.3s;
-  cursor: pointer;
-}
-/* line 377, ../sass/screen.scss */
-.refresher:hover {
-  background: rgba(255, 0, 0, 0.3);
-  color: #262626;
-}
-
-/* line 383, ../sass/screen.scss */
+/* line 364, ../sass/screen.scss */
 #initials.close + .refresher {
   opacity: 1;
-}
-
-/* line 385, ../sass/screen.scss */
-.intro {
-  position: absolute;
-  font-family: 'VT323', cursive;
-  left: 50%;
-  width: 400px;
-  margin-left: -200px;
-  height: 100px;
-  top: 50%;
-  margin-top: -50px;
-  opacity: 0;
-  visibility: hidden;
-}
-/* line 396, ../sass/screen.scss */
-.intro.start {
-  animation-name: fade-in-out;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-/* line 401, ../sass/screen.scss */
-.intro.step1 {
-  animation-duration: 4s;
-}
-/* line 404, ../sass/screen.scss */
-.intro.step2 {
-  animation-duration: 7s;
-  animation-delay: 4s;
-}
-/* line 405, ../sass/screen.scss */
-.intro.step3 {
-  animation-duration: 10s;
-  animation-delay: 11s;
-}
-/* line 406, ../sass/screen.scss */
-.intro.step4 {
-  animation-duration: 5s;
-  animation-delay: 21s;
-}
-/* line 407, ../sass/screen.scss */
-.intro.step5 {
-  animation-duration: 7s;
-  animation-delay: 26s;
-}
-
-/* line 410, ../sass/screen.scss */
-.intro .page-subtitle {
-  font-size: 30px;
-}
-
-/* line 411, ../sass/screen.scss */
-.intro.step1 {
-  width: 200px;
-  margin-left: -100px;
-}
-/* line 414, ../sass/screen.scss */
-.intro.step1 .page-subtitle {
-  font-size: 16px;
-}
-
-/* line 418, ../sass/screen.scss */
-#initials.start {
-  opacity: 0;
-  animation: fade-in 2s 5s forwards;
-}
-
-/* line 422, ../sass/screen.scss */
-.presets.start, label[for="open-ps"].start {
-  animation: slide-x 5s 12s;
-}
-
-/* line 423, ../sass/screen.scss */
-.preview.start, label[for="open-pr"].start {
-  animation: slide-x 3s 22s;
-}
-
-/* line 424, ../sass/screen.scss */
-.code.start, label[for="open-code"].start {
-  animation: slide-y 3s 27s;
 }
 
 /*------------------------------------*\
     Animations
 \*------------------------------------*/
 @keyframes fade-in-out {
-  /* line 431, ../sass/screen.scss */
+  /* line 372, ../sass/screen.scss */
   10% {
     opacity: 0;
     visibility: hidden;
   }
 
-  /* line 432, ../sass/screen.scss */
+  /* line 373, ../sass/screen.scss */
   20% {
     opacity: 1;
     visibility: visible;
   }
 
-  /* line 433, ../sass/screen.scss */
+  /* line 374, ../sass/screen.scss */
   50% {
     opacity: 1;
   }
 
-  /* line 434, ../sass/screen.scss */
+  /* line 375, ../sass/screen.scss */
   80% {
     opacity: 1;
     visibility: visible;
   }
 
-  /* line 435, ../sass/screen.scss */
+  /* line 376, ../sass/screen.scss */
   90% {
     opacity: 0;
     visibility: hidden;
   }
 }
 @keyframes fade-in {
-  /* line 438, ../sass/screen.scss */
+  /* line 379, ../sass/screen.scss */
   to {
     opacity: 1;
   }
 }
 @keyframes fade-out {
-  /* line 439, ../sass/screen.scss */
+  /* line 380, ../sass/screen.scss */
   to {
     opacity: 0;
   }
 }
 @keyframes slide-x {
-  /* line 440, ../sass/screen.scss */
+  /* line 381, ../sass/screen.scss */
   50% {
     transform: translateX(0);
   }
 }
 @keyframes slide-y {
-  /* line 441, ../sass/screen.scss */
+  /* line 382, ../sass/screen.scss */
   50% {
     transform: translateY(0);
   }
 }
-/* line 444, ../sass/screen.scss */
+/*------------------------------------*\
+    Twitter and Github
+\*------------------------------------*/
+/* line 388, ../sass/screen.scss */
 .twitter-share-button {
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
-/* line 450, ../sass/screen.scss */
+/* line 394, ../sass/screen.scss */
 #gh {
   position: absolute;
   bottom: 0;

@@ -1,105 +1,107 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="UTF-8">
-  <title>Pixelator by @elrumordelaluz</title>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="js/prefixfree.min.js" async></script>
-  <script type="text/javascript" src="js/jscolor/jscolor.js" async></script>
-  <script type="text/javascript" src="js/main.js" async></script>
-</head>
-<body>
-  <header id="header" class="start">
-    <h1 class="page-title">Pixel<span>Art</span></h1>
-    <h3 class="page-subtitle">by<a href="http://www.twitter.com/elrumordelaluz">@elrumordelaluz</a></h3><a href="https://twitter.com/share" data-url="http://lab.elrumordelaluz.com/pixelator/" data-text="Make easy one-element css3 box-shadow PixelArt with pixelator" data-via="elrumordelaluz" data-count="none" data-hashtags="pixelator" class="twitter-share-button">Tweet</a>
-    <iframe id="gh" src="http://ghbtns.com/github-btn.html?user=elrumordelaluz&amp;repo=pixelator&amp;type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
-  </header>
-  <div id="initials" class="start">
-    <p class="init-title">Initial settings</p>
-    <form onsubmit="return init();">
-      <label for="setcol">Colums:</label>
-      <input id="setcol" type="text" value="20">
-      <label for="setrow">Rows:</label>
-      <input id="setrow" type="text" value="20">
-      <label for="setrow">Pixel size:</label>
-      <input id="setpixel" type="text" value="5" onchange="handleChange(this)">
-      <input id="settings" type="submit" value="Create Grid &amp; Start!">
-    </form><a id="help-opener" href="javascript:void(0)">Need help?</a>
-    <div id="help" class="help">
-      <p>With this simple tool you could generate pixelArt one-element css box-shadow following these few steps:</p>
-      <ol>
-        <li>1. Simply create a grid depending on your needs and set the pixel size for the output. Then toggle the panels (left, right and bottom).</li>
-        <li>2. On the left side, set some color presets. You could add up to 13 and manage it just clicking on the number or triggering the numbero on the keyboard (only from 1 to 9).</li>
-        <li>3. On the right side, preview your one-element box-shadow generated.</li>
-        <li>4. On the bottom you could copy the CSS generated code.</li>
-        <p>This is a beta release. Hope you enjoy it and appreciate your comments to improve this tool.</p><a href="http://twitter.com/elrumordelaluz">@elrumordelaluz</a>
-      </ol>
-    </div>
-  </div>
-  <div onclick="location.reload();" class="refresher">Reset</div>
-  <div id="stp1" class="intro step1 start">
-    <h1 class="page-title">Pixel<span>ator</span></h1>
-    <h3 class="page-subtitle">box-shadow pixel generator</h3>
-  </div>
-  <div id="stp2" class="intro step2 start">
-    <h3 class="page-subtitle">1. Start setting the grid of pixels you want.</h3>
-  </div>
-  <div id="stp3" class="intro step3 start">
-    <h3 class="page-subtitle">2. Add and manage color presets by clicking on the numbers or just triggering the keyboard number (only 1-9).</h3>
-  </div>
-  <div id="stp4" class="intro step4 start">
-    <h3 class="page-subtitle">3. Always you can preview it in real scale.</h3>
-  </div>
-  <div id="stp5" class="intro step5 start">
-    <h3 class="page-subtitle">4. Then, you could copy the generated CSS code.</h3>
-  </div>
-  <input id="open-ps" type="checkbox" name="open-ps" class="opener">
-  <label id="openpresets" for="open-ps" class="start"></label>
-  <aside id="ps" class="presets start">
-    <div id="presets">
-      <h3 class="ps-title">Presets
-        <button id="add-ps" onclick="addPreset()">+</button>
-      </h3>
-      <div id="actualcolor">Color selected</div>
-      <div>
-        <button id="select-1" onclick="selectPreset(this)">1</button>
-        <input id="preset-1" type="text" name="preset-1" value="#1abc9c" class="color">
-      </div>
-      <div>
-        <button id="select-2" onclick="selectPreset(this)">2</button>
-        <input id="preset-2" type="text" name="preset-2" value="#3498db" class="color">
-      </div>
-      <div>
-        <button id="select-3" onclick="selectPreset(this)">3</button>
-        <input id="preset-3" type="text" name="preset-3" value="#9b59b6" class="color">
-      </div>
-      <div>
-        <button id="select-4" onclick="selectPreset(this)">4</button>
-        <input id="preset-4" type="text" name="preset-4" value="#e74c3c" class="color">
-      </div>
-      <div>
-        <button id="select-5" onclick="selectPreset(this)">5</button>
-        <input id="preset-5" type="text" name="preset-5" value="#f39c12" class="color">
+
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Pixelator by @elrumordelaluz</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/prefixfree.min.js" async="async"></script>
+    <script type="text/javascript" src="js/jscolor/jscolor.js" async="async"></script>
+    <script type="text/javascript" src="js/main.js" async="async"></script>
+  </head>
+  <body>
+    <header id="header" class="start">
+      <h1 class="page-title">Pixel<span>Art</span></h1>
+      <h3 class="page-subtitle">by<a href="http://www.twitter.com/elrumordelaluz">@elrumordelaluz</a></h3><a href="https://twitter.com/share" data-url="http://lab.elrumordelaluz.com/pixelator/" data-text="Make easy one-element css3 box-shadow PixelArt with pixelator" data-via="elrumordelaluz" data-count="none" data-hashtags="pixelator" class="twitter-share-button">Tweet</a>
+      <iframe id="gh" src="http://ghbtns.com/github-btn.html?user=elrumordelaluz&amp;repo=pixelator&amp;type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+    </header>
+    <div id="initials" class="start">
+      <p class="init-title">Initial settings</p>
+      <form onsubmit="return init();">
+        <label for="setcol">Colums:</label>
+        <input id="setcol" type="text" value="20"/>
+        <label for="setrow">Rows:</label>
+        <input id="setrow" type="text" value="20"/>
+        <label for="setrow">Pixel size:</label>
+        <input id="setpixel" type="text" value="5" onchange="handleChange(this)"/>
+        <input id="settings" type="submit" value="Create Grid &amp; Start!"/>
+      </form><a id="help-opener" href="javascript:void(0)">Need help?</a>
+      <div id="help" class="help">
+        <p>With this simple tool you could generate pixelArt one-element css box-shadow following these few steps:</p>
+        <ol>
+          <li>1. Simply create a grid depending on your needs and set the pixel size for the output. Then toggle the panels (left, right and bottom).</li>
+          <li>2. On the left side, set some color presets. You could add up to 13 and manage it just clicking on the number or triggering the numbero on the keyboard (only from 1 to 9).</li>
+          <li>3. On the right side, preview your one-element box-shadow generated.</li>
+          <li>4. On the bottom you could copy the CSS generated code.</li>
+          <p>This is a beta release. Hope you enjoy it and appreciate your comments to improve this tool.</p><a href="http://twitter.com/elrumordelaluz">@elrumordelaluz</a>
+        </ol>
       </div>
     </div>
-  </aside>
-  <section class="main">
-    <div id="init"></div>
-  </section>
-  <input id="open-pr" type="checkbox" name="open-pr" class="opener">
-  <label id="openpreview" for="open-pr"></label>
-  <aside id="preview" class="preview start">
-    <div id="result"></div>
-    <form action="http://codepen.io/pen/define" method="POST" target="_blank">
-      <input id="cdpn-data" type="hidden" name="data">
-      <input id="codepen" type="submit" onclick="_gaq.push(['_trackEvent', 'Codepen', 'publish']);" value="view on Codepen" class="codepen">
-    </form>
-  </aside>
-  <input id="open-code" type="checkbox" name="open-code" class="opener">
-  <!--label#css-->
-  <label id="opencode" for="open-code" class="start"></label>
-  <!--label#scss-->
-  <section id="cd" class="code start">
-    <textarea id="code"></textarea>
-  </section>
-</body>
+    <div onclick="location.reload();" class="refresher">Reset</div>
+    <div id="stp1" class="intro step1 start">
+      <h1 class="page-title">Pixel<span>ator</span></h1>
+      <h3 class="page-subtitle">box-shadow pixel generator</h3>
+    </div>
+    <div id="stp2" class="intro step2 start">
+      <h3 class="page-subtitle">1. Start setting the grid of pixels you want.</h3>
+    </div>
+    <div id="stp3" class="intro step3 start">
+      <h3 class="page-subtitle">2. Add and manage color presets by clicking on the numbers or just triggering the keyboard number (only 1-9).</h3>
+    </div>
+    <div id="stp4" class="intro step4 start">
+      <h3 class="page-subtitle">3. Always you can preview it in real scale.</h3>
+    </div>
+    <div id="stp5" class="intro step5 start">
+      <h3 class="page-subtitle">4. Then, you could copy the generated CSS code.</h3>
+    </div>
+    <input id="open-ps" type="checkbox" name="open-ps" class="opener"/>
+    <label id="openpresets" for="open-ps" class="start"></label>
+    <aside id="ps" class="presets start">
+      <div id="presets">
+        <h3 class="ps-title">Presets
+          <button id="add-ps" onclick="addPreset()">+</button>
+        </h3>
+        <div id="actualcolor">Color selected</div>
+        <div>
+          <button id="select-1" onclick="selectPreset(this)">1</button>
+          <input id="preset-1" type="text" name="preset-1" value="#1abc9c" class="color"/>
+        </div>
+        <div>
+          <button id="select-2" onclick="selectPreset(this)">2</button>
+          <input id="preset-2" type="text" name="preset-2" value="#3498db" class="color"/>
+        </div>
+        <div>
+          <button id="select-3" onclick="selectPreset(this)">3</button>
+          <input id="preset-3" type="text" name="preset-3" value="#9b59b6" class="color"/>
+        </div>
+        <div>
+          <button id="select-4" onclick="selectPreset(this)">4</button>
+          <input id="preset-4" type="text" name="preset-4" value="#e74c3c" class="color"/>
+        </div>
+        <div>
+          <button id="select-5" onclick="selectPreset(this)">5</button>
+          <input id="preset-5" type="text" name="preset-5" value="#f39c12" class="color"/>
+        </div>
+      </div>
+    </aside>
+    <section class="main">
+      <div id="init"></div>
+    </section>
+    <input id="open-pr" type="checkbox" name="open-pr" class="opener"/>
+    <label id="openpreview" for="open-pr"></label>
+    <aside id="preview" class="preview start">
+      <div id="result"></div>
+      <form action="http://codepen.io/pen/define" method="POST" target="_blank">
+        <input id="cdpn-data" type="hidden" name="data"/>
+        <input id="codepen" type="submit" onclick="_gaq.push(['_trackEvent', 'Codepen', 'publish']);" value="view on Codepen" class="codepen"/>
+      </form>
+    </aside>
+    <input id="open-code" type="checkbox" name="open-code" class="opener"/>
+    <!--label#css-->
+    <label id="opencode" for="open-code" class="start"></label>
+    <!--label#scss-->
+    <section id="cd" class="code start">
+      <textarea id="code"></textarea>
+    </section>
+  </body>
+</html>

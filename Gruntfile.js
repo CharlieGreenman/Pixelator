@@ -66,7 +66,7 @@ module.exports = function(grunt) {
             },
 
             jade: {
-                files: 'jade/**/*.jade',
+                files: ['jade/**/*.jade', 'includes/**/*.jade' ],
                 tasks: [ 'jade' ],
                 options: {
                     livereload: LIVERELOAD_PORT
